@@ -71,5 +71,5 @@ Detalhes em
 cd terraform
 terraform init
 terraform plan      # mostra o que seria criado (não cria nada)
-# terraform apply   # CRIA recursos reais e pode gerar custos na AWS
+terraform apply   # CRIA recursos reais e pode gerar custos na AWS
 ```
