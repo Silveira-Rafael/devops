@@ -24,7 +24,7 @@ jobs:
         python-version: ["3.11", "3.12"]
     steps:
       - name: Baixar o código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Configurar o Python
         uses: actions/setup-python@v5
@@ -60,7 +60,7 @@ jobs:
     needs: lint-and-test
     steps:
       - name: Baixar o código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Construir a imagem
         run: docker build -t task-api:ci .
@@ -82,7 +82,7 @@ jobs:
         working-directory: terraform
     steps:
       - name: Baixar o código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Instalar o Terraform
         uses: hashicorp/setup-terraform@v3
