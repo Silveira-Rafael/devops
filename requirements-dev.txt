@@ -1,4 +1,4 @@
 # Ferramentas usadas apenas em desenvolvimento e no pipeline de CI.
 # A aplicação em si não tem dependências externas (usa só a biblioteca padrão).
 flake8==7.1.1
-coverage==7.6.9
+coverage==7.17.2
