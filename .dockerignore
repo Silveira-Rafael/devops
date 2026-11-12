@@ -1,0 +1,9 @@
+.git
+.github
+tests
+terraform
+docs
+__pycache__
+*.pyc
+.coverage
+coverage.xml

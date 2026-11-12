@@ -1,0 +1,17 @@
+#!/bin/bash
+# Executado uma única vez, na primeira inicialização da instância EC2.
+set -euxo pipefail
+
+dnf install -y docker git
+systemctl enable --now docker
+
+git clone ${repository_url} /opt/app
+cd /opt/app
+
+docker build -t ${project_name}:latest .
+docker run -d \
+  --name ${project_name} \
+  --restart unless-stopped \
+  -e PORT=${app_port} \
+  -p 80:${app_port} \
+  ${project_name}:latest
