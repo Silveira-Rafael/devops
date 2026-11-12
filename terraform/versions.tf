@@ -7,6 +7,16 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  # Em um projeto real, o estado ficaria em um backend remoto.
+  # Exemplo:
+  # backend "s3" {
+  #   bucket         = "meu-bucket"
+  #   key            = "devops/terraform.tfstate"
+  #   region         = "sa-east-1"
+  #   dynamodb_table = "terraform-lock"
+  #   encrypt        = true
+  # }
 }
 
 provider "aws" {
