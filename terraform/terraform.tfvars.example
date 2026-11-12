@@ -1,0 +1,4 @@
+aws_region     = "sa-east-1"
+environment    = "dev"
+repository_url = "https://github.com/Silveira-Rafael/devops.git"
+# allowed_ssh_cidr = "203.0.113.10/32"
