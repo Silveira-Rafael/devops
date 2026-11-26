@@ -1,0 +1,4 @@
+# Garante finais de linha LF em scripts
+*.sh text eol=lf
+*.yml text eol=lf
+*.tf text eol=lf
