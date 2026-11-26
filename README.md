@@ -73,3 +73,29 @@ terraform init
 terraform plan      # mostra o que seria criado (não cria nada)
 # terraform apply   # CRIA recursos reais e pode gerar custos na AWS
 ```
+
+## Fase 2: Entrega Contínua e containers
+
+A Fase 2 expande o pipeline com **entrega contínua (CD)** e usa **Docker Compose** para o deploy.
+
+| Arquivo                                  | Função                                                                  |
+|------------------------------------------|-------------------------------------------------------------------------|
+| [`.github/workflows/cd.yml`](.github/workflows/cd.yml) | Pipeline de CD: roda depois que o CI termina com sucesso na `main`      |
+| [`docker-compose.yml`](docker-compose.yml) | Orquestração do contêiner (portas, healthcheck, limites e segurança)   |
+| [`scripts/deploy.sh`](scripts/deploy.sh) | Script de deploy: sobe a aplicação, espera o `/health` e faz smoke test |
+| [`docs/fluxo-devops.md`](docs/fluxo-devops.md) | Fluxograma completo do fluxo DevOps (Fases 1 e 2)                  |
+
+**Jobs do CD**
+
+| Job              | O que faz                                                                                    |
+|------------------|----------------------------------------------------------------------------------------------|
+| `publish-image`  | Constrói a imagem e publica no GitHub Container Registry (tags com o SHA do commit e `latest`) |
+| `deploy-staging` | Baixa a imagem publicada, faz o deploy com Docker Compose, executa o smoke test, coleta os logs e encerra o ambiente |
+
+Executar o deploy localmente (precisa de Docker):
+
+```bash
+bash scripts/deploy.sh up     # constrói a imagem, sobe e testa
+bash scripts/deploy.sh logs   # mostra os logs
+bash scripts/deploy.sh down   # encerra
+```
